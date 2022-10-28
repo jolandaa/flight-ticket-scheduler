@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "flight-ticket-scheduler-d75a1": {
+      "hosting": {
+        "flight-ticket-scheduler": [
+          "flight-ticket-scheduler-d75a1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "flight-ticket-scheduler-d75a1"
+  }
+}
