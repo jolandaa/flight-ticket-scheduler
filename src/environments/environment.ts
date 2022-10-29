@@ -4,13 +4,15 @@
 
 export const environment = {
   production: false,
-  apiKey: "AIzaSyBSLSwGivLnMLHA3Atnbup5bRa4ULQ1dbo",
-  authDomain: "flight-ticket-scheduler-d75a1.firebaseapp.com",
-  projectId: "flight-ticket-scheduler-d75a1",
-  storageBucket: "flight-ticket-scheduler-d75a1.appspot.com",
-  messagingSenderId: "465624055780",
-  appId: "1:465624055780:web:1d62f50b1807a65ae0d1f1",
-  measurementId: "G-QEG5RYJDY9"
+  firebase: {
+    apiKey: "AIzaSyBSLSwGivLnMLHA3Atnbup5bRa4ULQ1dbo",
+    authDomain: "flight-ticket-scheduler-d75a1.firebaseapp.com",
+    projectId: "flight-ticket-scheduler-d75a1",
+    storageBucket: "flight-ticket-scheduler-d75a1.appspot.com",
+    messagingSenderId: "465624055780",
+    appId: "1:465624055780:web:1d62f50b1807a65ae0d1f1",
+    measurementId: "G-QEG5RYJDY9"
+  }
 };
 
 // Import the functions you need from the SDKs you need
