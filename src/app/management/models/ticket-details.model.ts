@@ -7,5 +7,5 @@ export interface TicketDetailsModel {
   price: number;
   from_date: Date;
   to_date: Date;
-  seat_number: number;
+  seat_number: number
 }
