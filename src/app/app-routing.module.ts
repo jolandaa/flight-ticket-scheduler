@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'manage',
+    redirectTo: 'manage/ticket-list',
     pathMatch: 'full'
   },
   {
