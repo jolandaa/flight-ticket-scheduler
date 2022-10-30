@@ -1,5 +1,5 @@
 <div class="m-4">
-  <a [routerLink]="['/manage/add-ticket']" class="btn btn-outline-success mb-5"
+  <a [routerLink]="['/manage/add-ticket']" [target]="'_blank'" class="btn btn-outline-success mb-5"
      *ngIf="currentUser.role === 'admin'">Create Ticket</a>
 
   <ng-container *ngIf="(flightTicketList$ | async) as flightTicketList">
