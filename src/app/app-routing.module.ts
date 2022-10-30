@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {AuthGuard} from "./auth/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -8,7 +9,14 @@ const routes: Routes = [
   },
   {
     path: 'manage',
+    data: {roles: ["user", "admin"]},
     loadChildren: () => import('./management/management.module').then(m => m.ManagementModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    redirectTo: 'manage',
+    pathMatch: 'full'
   },
   {
     path: '**',
@@ -17,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: "enabled"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

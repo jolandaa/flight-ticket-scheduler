@@ -5,10 +5,11 @@ import { TicketListComponent } from './components/ticket-list/ticket-list.compon
 import { MainComponent } from './components/main/main.component';
 import { AddTicketComponent } from './components/add-ticket/add-ticket.component';
 import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
+import {ManagementRoutingModule} from "./management.routing";
 
 @NgModule({
   declarations: [
-  
+
     TicketListComponent,
        MainComponent,
        AddTicketComponent,
@@ -16,6 +17,7 @@ import { EditTicketComponent } from './components/edit-ticket/edit-ticket.compon
   ],
   imports: [
     CommonModule,
+    ManagementRoutingModule,
     ReactiveFormsModule
   ]
 })

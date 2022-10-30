@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   });
 
   login(formData: any){
+    this.firebaseService.login(formData.email, formData.password)
   }
 
   ngOnInit(): void {

@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   });
 
   signup(formData: any){
+    this.firebaseService.signUp(formData.email, formData.password)
   }
 
   ngOnInit(): void {
