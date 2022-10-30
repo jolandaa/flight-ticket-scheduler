@@ -1,3 +1,43 @@
-<p>ticket-list works!</p>
+<div class="m-4">
+  <a [routerLink]="['/manage/add-ticket']" class="btn btn-outline-success mb-5"
+     *ngIf="currentUser.role === 'admin'">Create Ticket</a>
 
-<button (click)="addTicket()" *ngIf="currentUser.role === 'admin'">Add</button>
+  <ng-container *ngIf="(flightTicketList$ | async) as flightTicketList">
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Nr.</th>
+        <th scope="col">Inbound</th>
+        <th scope="col">Outbound</th>
+        <th scope="col">Ticket Type</th>
+        <th scope="col">Form Date</th>
+        <th scope="col">To Date</th>
+        <th scope="col">Seat Number</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ticket of flightTicketList;let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{ticket.inbound}}</td>
+        <td>{{ticket.outbound}}</td>
+        <td>{{ticket.ticket_type}}</td>
+        <td>{{ticket.from_date}}</td>
+        <td>{{ticket.to_date}}</td>
+        <td>{{ticket.seat_number}}</td>
+        <td>{{ticket.price}}</td>
+        <td>
+          <a [routerLink]="['/manage/view-ticket', ticket.id]" [target]="'_blank'">View</a>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </ng-container>
+</div>
+
+
+

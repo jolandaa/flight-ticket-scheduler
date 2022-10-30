@@ -15,9 +15,6 @@ export class AuthGuard implements CanActivate {
     const currentUser = JSON.parse(<string>localStorage.getItem('currentUser'));
 
     if(currentUser){
-      console.log(state.url)
-      console.log(next.url)
-
       //check if the route is retricted by role
       if(next.data['roles'] && next.data['roles'].indexOf(currentUser?.role) === -1){
         //role not authorized

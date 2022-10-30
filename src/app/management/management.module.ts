@@ -4,7 +4,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { TicketListComponent } from './components/ticket-list/ticket-list.component';
 import { MainComponent } from './components/main/main.component';
 import { AddTicketComponent } from './components/add-ticket/add-ticket.component';
-import { EditTicketComponent } from './components/edit-ticket/edit-ticket.component';
+import { ViewTicketComponent } from './components/view-ticket/view-ticket.component';
 import {ManagementRoutingModule} from "./management.routing";
 
 @NgModule({
@@ -13,7 +13,7 @@ import {ManagementRoutingModule} from "./management.routing";
     TicketListComponent,
        MainComponent,
        AddTicketComponent,
-       EditTicketComponent
+       ViewTicketComponent
   ],
   imports: [
     CommonModule,

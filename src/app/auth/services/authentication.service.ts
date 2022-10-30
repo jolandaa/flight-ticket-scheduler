@@ -4,7 +4,7 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import firebase from 'firebase/compat/app';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Router} from "@angular/router";
-import {user} from "@angular/fire/auth";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,8 @@ export class AuthenticationService {
   constructor(private angularFireAuth: AngularFireAuth,
               private firestore: AngularFirestore,
               private router: Router,
-              private ngZone: NgZone) {
+              private ngZone: NgZone,
+              private snackBar: MatSnackBar) {
     this.userData = angularFireAuth.authState;
   }
 
@@ -38,7 +39,7 @@ export class AuthenticationService {
         let user = {
           id: res?.user?.uid,
           username: res?.user?.email,
-          role: "admin",
+          role: "user",
         }
 
         //add the user to the database
@@ -47,6 +48,7 @@ export class AuthenticationService {
             user.get().then(x => {
               //return the user data
               console.log(x.data());
+              this.router.navigate(['/auth/login'])
             })
           }).catch(err => {
           console.log(err);
@@ -54,6 +56,7 @@ export class AuthenticationService {
       })
       .catch(error => {
         console.log('Something is wrong:', error.message);
+        this.snackBar.open('Something went wrong:' + error.message)
       });
   }
 
@@ -76,6 +79,7 @@ export class AuthenticationService {
       })
       .catch(err => {
         console.log('Something went wrong:',err.message);
+        this.snackBar.open('Something went wrong:' + err.message)
       });
   }
 
@@ -90,6 +94,7 @@ export class AuthenticationService {
 
       }).catch((err) => {
       console.log(err);
+      this.snackBar.open('Something went wrong:' + err.message)
     })
   }
 

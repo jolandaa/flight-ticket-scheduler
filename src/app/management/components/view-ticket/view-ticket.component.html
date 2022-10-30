@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card mt-5">
     <div class="card-body">
-      <form class="row g-3" [formGroup]="createTicketForm" (ngSubmit)="createTicket()">
+      <form class="row g-3" [formGroup]="ticketForm">
         <div class="col-md-6">
           <label for="inputInbound" class="form-label">Inbound</label>
           <input type="text" class="form-control" id="inputInbound" formControlName="inbound">

@@ -1,37 +1,50 @@
 <div class="main__body h-100 d-flex align-items-center justify-content-center">
-  <div class="container">
-
-    <div class="login__page">
-      <div class="row align-items-center justify-content-center">
-        <div class="card col-md-4 col-md-offset-4">
-          <div class="login__card">
-            <div class="card-block">
-
-              <form name="userform" method="post" [formGroup]="signUpForm">
-                <h3 align="center">Sign Up Form</h3>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" name="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" name="password" placeholder="Password" required>
-                </div>
-
-                <div class="form-group">
-                  <button type="buton" class="btn btn-primary btn-block" style="margin-bottom: 20px" (click)="signup(signUpForm.value)" [disabled]="signUpForm.invalid">
-                    Sign Up
-                  </button>
-                </div>
-
-              </form>
-
-            </div>
-          </div>
+  <section class="vh-100 w-100 d-flex flex-column">
+    <div class="container h-custom flex-grow-1">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+               class="img-fluid" alt="Sample image">
         </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form [formGroup]="signUpForm">
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+              <p class="lead fw-normal me-3">Sign up</p>
+            </div>
 
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" id="form3Example3" class="form-control form-control-lg"
+                     placeholder="Enter a valid email address" formControlName="email"/>
+              <label class="form-label" for="form3Example3">Email address</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password" id="form3Example4" class="form-control form-control-lg"
+                     placeholder="Enter password" formControlName="password"/>
+              <label class="form-label" for="form3Example4">Password</label>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="button" class="btn btn-primary btn-lg" (click)="signup(signUpForm.value)" [disabled]="signUpForm.invalid"
+                      style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button>
+              <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account?
+                <a [routerLink]="['/auth/login']" class="link-danger">Login</a></p>
+            </div>
+
+          </form>
+        </div>
       </div>
-    </div> <!-- end card -->
+    </div>
+    <div
+      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+      <!-- Copyright -->
+      <div class="text-white mb-3 mb-md-0">
+        Copyright © 2020. All rights reserved.
+      </div>
+      <!-- Copyright -->
+    </div>
+  </section>
 
-  </div>  <!-- end container -->
 </div>

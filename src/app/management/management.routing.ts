@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MainComponent} from "./components/main/main.component";
 import {TicketListComponent} from "./components/ticket-list/ticket-list.component";
 import {AddTicketComponent} from "./components/add-ticket/add-ticket.component";
-import {EditTicketComponent} from "./components/edit-ticket/edit-ticket.component";
+import {ViewTicketComponent} from "./components/view-ticket/view-ticket.component";
 
 const routes: Routes = [
   {
@@ -19,8 +19,8 @@ const routes: Routes = [
         component: AddTicketComponent,
       },
       {
-        path: "edit-ticket",
-        component: EditTicketComponent,
+        path: "view-ticket/:ticketId",
+        component: ViewTicketComponent,
       }
     ]
   }
