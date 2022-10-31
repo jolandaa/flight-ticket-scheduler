@@ -9,3 +9,15 @@ export interface TicketDetailsModel {
   to_date?: Date;
   seat_number?: number
 }
+
+export type WhereFilterOp =
+  | '<'
+  | '<='
+  | '=='
+  | '!='
+  | '>='
+  | '>'
+  | 'array-contains'
+  | 'in'
+  | 'array-contains-any'
+  | 'not-in';

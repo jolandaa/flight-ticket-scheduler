@@ -22,7 +22,12 @@ export class AuthGuard implements CanActivate {
         return false;
       }else{
         if (currentUser.role === 'user') {
-          return !state.url.includes('add');
+          if (state.url.includes('add')) {
+            this.router.navigate(["/"])
+            return false
+          } else {
+            return true
+          }
         }
         return true;
       }

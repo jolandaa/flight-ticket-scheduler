@@ -31,6 +31,7 @@ export class AddTicketComponent implements OnInit {
       return;
     }
     this.ticketService.addFlightTicket(this.createTicketForm.value).then(res => {
+      console.log(res)
       if (res) {
         this.createTicketForm.reset({})
         this.snackBar.open('Ticket is added successfully!')
