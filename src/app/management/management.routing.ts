@@ -4,6 +4,7 @@ import {MainComponent} from "./components/main/main.component";
 import {TicketListComponent} from "./components/ticket-list/ticket-list.component";
 import {AddTicketComponent} from "./components/add-ticket/add-ticket.component";
 import {ViewTicketComponent} from "./components/view-ticket/view-ticket.component";
+import {RoleGuard} from "../auth/guards/role.guard";
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       {
         path: "add-ticket",
         component: AddTicketComponent,
+        canActivate:[RoleGuard]
       },
       {
         path: "view-ticket/:ticketId",
