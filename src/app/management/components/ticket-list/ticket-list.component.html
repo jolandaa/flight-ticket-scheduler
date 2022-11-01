@@ -1,6 +1,31 @@
 <div class="m-4">
-  <a [routerLink]="['/manage/add-ticket']" [target]="'_blank'" class="btn btn-outline-success mb-5"
-     *ngIf="currentUser.role === 'admin'">Create Ticket</a>
+  <div class="mb-5 d-flex align-items-center justify-content-between">
+    <div>
+      <a [routerLink]="['/manage/add-ticket']" [target]="'_blank'" class="btn btn-outline-success "
+         *ngIf="currentUser.role === 'admin'">Create Ticket</a>
+      <a [routerLink]="['/manage/dashboard']" [target]="'_blank'" class="btn btn-outline-success mx-4">Dashboard</a>
+    </div>
+
+
+    <div class="d-flex align-items-center">
+      <span class="me-5">Filter By:</span>
+
+      <div>
+        <label>Ticket Type</label>
+        <select
+          id="flight-type-select"
+          class="form-select" [(ngModel)]="filterByTicketType"
+          (ngModelChange)="filterTicketFlight('ticket_type', '==', filterByTicketType)"
+          aria-describedby="flight-type-label">
+          <option value="one-way">One-way</option>
+          <option value="round-trip">Round-trip</option>
+        </select>
+      </div>
+
+      <button class="btn btn-outline-success mx-3" (click)="clearFilters()">Clear Filters</button>
+    </div>
+  </div>
+
 
   <ng-container *ngIf="(flightTicketList$ | async) as flightTicketList">
 

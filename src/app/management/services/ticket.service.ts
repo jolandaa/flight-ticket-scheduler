@@ -22,22 +22,32 @@ export class TicketService {
   }
 
 
-  getFlightTicketList() {
-    this.firestore.collection('users').doc(this.currentUser.id).collection('flight-ticket-scheduler').ref.onSnapshot(snap => {
-      const flightTicketList: any[] = []
-      snap.forEach(res => {
-        flightTicketList.push({...res.data(), id: res.id})
+  async getFlightTicketList(filtersData: any = null) {
+    if (filtersData) {
+      await this.filterTicketFlights(filtersData.fieldPath, filtersData.condition, filtersData.filterValue).then(snap => {
+        const flightTicketList: any[] = []
+        snap.forEach((res: { data: () => any; id: any; }) => {
+          flightTicketList.push({...res.data(), id: res.id})
+        })
+        this.flightTicketList.next(flightTicketList)
       })
-      this.flightTicketList.next(flightTicketList)
-    })
+    } else {
+      this.firestore.collection('users').doc(this.currentUser.id).collection('flight-ticket-scheduler').ref.onSnapshot(snap => {
+        const flightTicketList: any[] = []
+        snap.forEach(res => {
+          flightTicketList.push({...res.data(), id: res.id})
+        })
+        this.flightTicketList.next(flightTicketList)
+      })
+    }
   }
 
   async addFlightTicket(data: TicketDetailsModel) {
-    const hasWithSameInbound = await this.filterTicketFlight('inbound', '==', data.inbound);
-    const hasWithSameOutbound = await this.filterTicketFlight('outbound', '==', data.outbound);
-    const hasWithSameFromDate = await this.filterTicketFlight('from_date', '==', data.from_date);
-    const hasWithSameToDate = await this.filterTicketFlight('to_date', '==', data.to_date);
-    const hasWithSameSeatNumber = await this.filterTicketFlight('seat_number', '==', data.seat_number);
+    const hasWithSameInbound = await this.hasValuesByFilter('inbound', '==', data.inbound);
+    const hasWithSameOutbound = await this.hasValuesByFilter('outbound', '==', data.outbound);
+    const hasWithSameFromDate = await this.hasValuesByFilter('from_date', '==', data.from_date);
+    const hasWithSameToDate = await this.hasValuesByFilter('to_date', '==', data.to_date);
+    const hasWithSameSeatNumber = await this.hasValuesByFilter('seat_number', '==', data.seat_number);
 
     const filtersArr = [hasWithSameInbound,hasWithSameOutbound,hasWithSameFromDate,hasWithSameToDate,hasWithSameSeatNumber]
     const hasAllSameValue = filtersArr.every(e => e);
@@ -54,10 +64,17 @@ export class TicketService {
   }
 
 
-  filterTicketFlight(fieldPath: string, condition: WhereFilterOp, filterValue: string | number | Date | undefined) {
+  hasValuesByFilter(fieldPath: string, condition: WhereFilterOp, filterValue: string | number | Date | undefined) {
     return new Promise<any>((resolve)=> {
       this.firestore.collection('users').doc(this.currentUser.id).collection('flight-ticket-scheduler').ref
         .where(fieldPath, condition, filterValue).onSnapshot(filteredList => resolve(!filteredList.empty))
+    })
+  }
+
+  filterTicketFlights(fieldPath: string, condition: WhereFilterOp, filterValue: string | number | Date | undefined) {
+    return new Promise<any>((resolve)=> {
+      this.firestore.collection('users').doc(this.currentUser.id).collection('flight-ticket-scheduler').ref
+        .where(fieldPath, condition, filterValue).onSnapshot(filteredList => resolve(filteredList))
     })
   }
 

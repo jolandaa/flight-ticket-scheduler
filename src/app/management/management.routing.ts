@@ -5,6 +5,7 @@ import {TicketListComponent} from "./components/ticket-list/ticket-list.componen
 import {AddTicketComponent} from "./components/add-ticket/add-ticket.component";
 import {ViewTicketComponent} from "./components/view-ticket/view-ticket.component";
 import {RoleGuard} from "../auth/guards/role.guard";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: "view-ticket/:ticketId",
         component: ViewTicketComponent,
+      },
+      {
+        path: "dashboard",
+        component: DashboardComponent,
       }
     ]
   }
