@@ -44,6 +44,7 @@ export class TicketService {
 
     if (!hasAllSameValue) {
       return this.firestore.collection('users').doc(this.currentUser.id).collection('flight-ticket-scheduler').add(data)
+
     }
     return;
   }

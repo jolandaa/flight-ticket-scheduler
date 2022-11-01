@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TicketService} from "../../services/ticket.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
+
 @Component({
   selector: 'app-add-ticket',
   templateUrl: './add-ticket.component.html',
@@ -20,6 +21,8 @@ export class AddTicketComponent implements OnInit {
     price: new FormControl(null, Validators.required),
   });
 
+  showFromDate = true;
+
   constructor(private ticketService: TicketService,
               private snackBar: MatSnackBar) { }
 
@@ -33,11 +36,38 @@ export class AddTicketComponent implements OnInit {
     this.ticketService.addFlightTicket(this.createTicketForm.value).then(res => {
       console.log(res)
       if (res) {
+        res.set({id: res.id, ticket_type_id: this.createTicketForm.value.ticket_type + '_' + res.id}, {merge: true}).then(() => {
+          console.log("Your extra id field has been created");
+        });
         this.createTicketForm.reset({})
         this.snackBar.open('Ticket is added successfully!')
       }
     }).catch(err => {
       this.snackBar.open(err.message)
     })
+  }
+
+/*.then(ref => {
+  ref.set({extra_idField: ref.id, ticket_type_id: data.ticket_type + '_' + ref.id}, {merge: true}).then(() => {
+  console.log("Your extra id field has been created");
+  return;
+});
+})*/
+
+  ticketTypeChange() {
+    const ticket_type_value = this.createTicketForm.get('ticket_type')?.value
+    if (ticket_type_value == 'one-way') {
+      this.FromDate.clearValidators();
+      this.FromDate.updateValueAndValidity();
+      this.showFromDate = false;
+    } else {
+      this.FromDate.addValidators(Validators.required);
+      this.FromDate.updateValueAndValidity()
+      this.showFromDate = true;
+    }
+  }
+
+  get FromDate() {
+    return this.createTicketForm.get('from_date') as FormControl;
   }
 }
