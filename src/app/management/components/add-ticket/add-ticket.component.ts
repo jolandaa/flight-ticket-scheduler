@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-npm i ng2-chartsimport {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {TicketService} from "../../services/ticket.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
