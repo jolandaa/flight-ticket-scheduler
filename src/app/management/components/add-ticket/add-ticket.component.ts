@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+npm i ng2-chartsimport {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {TicketService} from "../../services/ticket.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
@@ -11,14 +11,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class AddTicketComponent implements OnInit {
 
-  createTicketForm = new FormGroup({
-    inbound: new FormControl(null, Validators.required),
-    outbound: new FormControl(null, Validators.required),
-    ticket_type: new FormControl(null, Validators.required),
-    from_date: new FormControl(null, Validators.required),
-    to_date: new FormControl(null, Validators.required),
-    seat_number: new FormControl(null, Validators.required),
-    price: new FormControl(null, Validators.required),
+  createTicketForm = new UntypedFormGroup({
+    inbound: new UntypedFormControl(null, Validators.required),
+    outbound: new UntypedFormControl(null, Validators.required),
+    ticket_type: new UntypedFormControl(null, Validators.required),
+    from_date: new UntypedFormControl(null, Validators.required),
+    to_date: new UntypedFormControl(null, Validators.required),
+    seat_number: new UntypedFormControl(null, Validators.required),
+    price: new UntypedFormControl(null, Validators.required),
   });
 
   showFromDate = true;
@@ -68,6 +68,6 @@ export class AddTicketComponent implements OnInit {
   }
 
   get FromDate() {
-    return this.createTicketForm.get('from_date') as FormControl;
+    return this.createTicketForm.get('from_date') as UntypedFormControl;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {TicketService} from "../../services/ticket.service";
 import {ActivatedRoute} from "@angular/router";
 import {TicketDetailsModel} from "../../models/ticket-details.model";
@@ -11,14 +11,14 @@ import {TicketDetailsModel} from "../../models/ticket-details.model";
 })
 export class ViewTicketComponent implements OnInit {
 
-  ticketForm = new FormGroup({
-    inbound: new FormControl({value: null, disabled: true}, Validators.required),
-    outbound: new FormControl({value: null, disabled: true}, Validators.required),
-    ticket_type: new FormControl({value: null, disabled: true}, Validators.required),
-    from_date: new FormControl({value: null, disabled: true}, Validators.required),
-    to_date: new FormControl({value: null, disabled: true}, Validators.required),
-    seat_number: new FormControl({value: null, disabled: true}, Validators.required),
-    price: new FormControl({value: null, disabled: true}, Validators.required),
+  ticketForm = new UntypedFormGroup({
+    inbound: new UntypedFormControl({value: null, disabled: true}, Validators.required),
+    outbound: new UntypedFormControl({value: null, disabled: true}, Validators.required),
+    ticket_type: new UntypedFormControl({value: null, disabled: true}, Validators.required),
+    from_date: new UntypedFormControl({value: null, disabled: true}, Validators.required),
+    to_date: new UntypedFormControl({value: null, disabled: true}, Validators.required),
+    seat_number: new UntypedFormControl({value: null, disabled: true}, Validators.required),
+    price: new UntypedFormControl({value: null, disabled: true}, Validators.required),
   });
 
   ticketId = this.route.snapshot.params['ticketId'];
