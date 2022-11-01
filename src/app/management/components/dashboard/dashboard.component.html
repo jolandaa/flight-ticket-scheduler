@@ -1,7 +1,16 @@
-<canvas baseChart
-        [data]="barChartData"
-        [options]="barChartOptions"
-        [plugins]="barChartPlugins"
-        [legend]="barChartLegend"
-        [type]="'bar'">
-</canvas>
+
+<div class="m-4">
+  <h1 class="text-center mb-5">Dashboard</h1>
+  <div class="mb-5 d-flex align-items-center justify-content-center">
+    <ng-container *ngIf="dataArr.length>0">
+      <canvas baseChart [width]="700"
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [type]="'bar'">
+      </canvas>
+    </ng-container>
+  </div>
+</div>
+
