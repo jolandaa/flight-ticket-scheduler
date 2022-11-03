@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserDetailsModel} from "../models/user-details.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   userData: Observable<firebase.User | null>;
 
-  public currentUser: any;
+  public currentUser!: UserDetailsModel | any;
   public userStatus!: string;
   public userStatusChanges: BehaviorSubject<string> = new BehaviorSubject<string>(this.userStatus);
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import {TicketService} from "../../services/ticket.service";
+import {TicketDetailsModel} from "../../models/ticket-details.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
     responsive: false,
   };
 
-  dataArr: any = [];
+  dataArr: TicketDetailsModel[] = [];
 
   constructor(public ticketService: TicketService) {
     this.ticketService.flightTicketList.subscribe(ticketArr => {

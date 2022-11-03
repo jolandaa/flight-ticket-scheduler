@@ -8,7 +8,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(private firebaseService: AuthenticationService,
               private snackBar: MatSnackBar) { }
@@ -27,7 +27,5 @@ export class LoginComponent implements OnInit {
     this.firebaseService.login(formData.email, formData.password)
   }
 
-  ngOnInit(): void {
-  }
 
 }

@@ -9,7 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './add-ticket.component.html',
   styleUrls: ['./add-ticket.component.scss']
 })
-export class AddTicketComponent implements OnInit {
+export class AddTicketComponent {
 
   createTicketForm = new UntypedFormGroup({
     inbound: new UntypedFormControl(null, Validators.required),
@@ -26,8 +26,6 @@ export class AddTicketComponent implements OnInit {
   constructor(private ticketService: TicketService,
               private snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
-  }
 
   createTicket() {
     if (this.createTicketForm.invalid) {
@@ -46,13 +44,6 @@ export class AddTicketComponent implements OnInit {
       this.snackBar.open(err.message)
     })
   }
-
-/*.then(ref => {
-  ref.set({extra_idField: ref.id, ticket_type_id: data.ticket_type + '_' + ref.id}, {merge: true}).then(() => {
-  console.log("Your extra id field has been created");
-  return;
-});
-})*/
 
   ticketTypeChange() {
     const ticket_type_value = this.createTicketForm.get('ticket_type')?.value
